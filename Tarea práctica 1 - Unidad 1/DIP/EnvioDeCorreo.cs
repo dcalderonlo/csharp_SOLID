@@ -1,20 +1,14 @@
 public class EnvioDeCorreo
 {
-  private SmtpCliente smtpCliente;
-  public EnvioDeCorreo()
+  private readonly IClienteCorreo _clienteCorreo;
+
+  public EnvioDeCorreo(IClienteCorreo clienteCorreo)
   {
-    smtpCliente = new SmtpCliente(); // Dependencia concreta
+    this._clienteCorreo = clienteCorreo;
   }
+
   public void EnviarCorreo(string destino, string mensaje)
   {
-    smtpCliente.Enviar(destino, mensaje);
-  }
-}
-
-public class SmtpCliente
-{
-  public void Enviar(string destino, string mensaje)
-  {
-    // Lógica para enviar correo
+    _clienteCorreo.Enviar(destino, mensaje);
   }
 }
